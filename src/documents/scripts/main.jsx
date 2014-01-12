@@ -87,11 +87,43 @@ var Controls = React.createClass({
   }
 })
 
+var Counter = React.createClass({
+  getInitialState: function() {
+    return {
+      count: 0,
+      counter: {},
+      tempo: this.props.tempo
+    }
+  },
+
+  tick: function() {
+    // @todo loop back at max pattern length
+    this.setState({count: this.state.count + 1});
+  },
+
+  start: function() {
+    var rate = 1000 / (tempo * 60);
+
+    this.interval = setInterval(this.tick, rate);
+  },
+
+  stop: function() {
+    clearInterval(this.interval);
+  },
+
+  render: function() {
+    return (
+      <div />
+    );
+  }
+})
+
 var Application = React.createClass({
   getInitialState: function() {
     return {
       instruments: this.props.project.instruments,
-      patterns: this.props.project.patterns
+      patterns: this.props.project.patterns,
+      tempo: this.props.project.tempo
     };
   },
 
@@ -99,6 +131,7 @@ var Application = React.createClass({
     return (
       <div>
         <h3>Instrument List</h3>
+        <Counter tempo={this.state.tempo} />
         <InstrumentList instruments={this.state.instruments} patterns={this.state.patterns} />
         <Controls />
       </div>
@@ -112,119 +145,3 @@ $.getJSON("project.json", function(json) {
     document.getElementById('example')
   );
  });
-
-// /** @jsx React.DOM */
-
-// var UserGist = React.createClass({
-//   getInitialState: function() {
-//     return {
-//       username: '',
-//       lastGistUrl: ''
-//     };
-//   },
-
-//   componentDidMount: function() {
-//     $.get(this.props.source, function(result) {
-//       var lastGist = result[0];
-
-//       this.setState({
-//         username: lastGist.user.login,
-//         lastGistUrl: lastGist.html_url
-//       });
-//     }.bind(this));
-//   },
-
-//   render: function() {
-//     return (
-//       <div>
-//         {this.state.username}s last gist is
-//         <a href={this.state.lastGistUrl}>here</a>.
-//       </div>
-//     );
-//   }
-// });
-
-// React.renderComponent(
-//   <UserGist source="https://api.github.com/users/octocat/gists" />,
-//   document.getElementById('example')
-// );
-
-
-// /** @jsx React.DOM */
-
-// var Counter = {
-//   // Invoked immediately before rendering occurs. If you call setState within this method,
-//   // render() will see the updated state and will be executed only once despite the state change.
-
-//   // Create a new instance of intervals
-//   componentWillMount: function() {
-//     this.intervals = [];
-//   },
-
-//   // Add interval to new scope
-//   setInterval: function() {
-//     this.intervals.push(setInterval.apply(null, arguments));
-//   },
-
-//   // Invoked immediately after rendering occurs. At this point in the lifecycle, the component has a
-//   // DOM representation which you can access via the rootNode argument or by calling this.getDOMNode().
-//   // If you want to integrate with other JavaScript frameworks, set timers using setTimeout or setInterval,
-//   // or send AJAX requests, perform those operations in this method.
-//   componentWillUnmount: function() {
-//     this.intervals.map(clearInterval);
-//   }
-// };
-
-// var Indicator = React.createClass({
-//   // Use the mixin
-//   mixins: [Counter],
-
-//   getInitialState: function() {
-//     return {
-//       step: 0,
-//       currentStepClass: 'current' + 0,
-//       tempo: 120
-//     };
-//   },
-
-//   componentDidMount: function(rootNode) {
-//     var tempo = this.state.tempo,
-//         rate = 1000 / (tempo / 60);
-
-//     // Call a method on the mixin
-//     this.setInterval(this.tick, rate);
-//   },
-
-//   componentWillUpdate: function(nextProps, nextState) {},
-
-//   // Count up to 16
-//   tick: function() {
-//     var step = this.state.step >= 7 ? 0 : this.state.step + 1;
-
-//     this.setState({
-//       step: step,
-//       currentStepClass: 'current' + step
-//     });
-//   },
-
-//   render: function() {
-//     return (
-//       <div className={this.state.currentStepClass}>
-//         <div className='indicator indicator0'></div>
-//         <div className='indicator indicator1'></div>
-//         <div className='indicator indicator2'></div>
-//         <div className='indicator indicator3'></div>
-
-//         <div className='indicator indicator4'></div>
-//         <div className='indicator indicator5'></div>
-//         <div className='indicator indicator6'></div>
-//         <div className='indicator indicator7'></div>
-//       </div>
-//     );
-//   }
-// });
-
-// React.renderComponent(
-//   <Indicator />,
-//   document.getElementById('example')
-// );

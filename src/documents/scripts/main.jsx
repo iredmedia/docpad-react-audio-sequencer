@@ -64,6 +64,29 @@ var InstrumentList = React.createClass({
   }
 });
 
+var Controls = React.createClass({
+  getInitialState: function() {
+    return {}
+  },
+
+  onPlay: function() {
+    console.log('play');
+  },
+
+  onStop: function() {
+    console.log('stop');
+  },
+
+  render: function() {
+    return (
+      <div>
+        <button onClick={this.onPlay}>Play</button>
+        <button onClick={this.onStop}>Stop</button>
+      </div>
+    );
+  }
+})
+
 var Application = React.createClass({
   getInitialState: function() {
     return {
@@ -77,6 +100,7 @@ var Application = React.createClass({
       <div>
         <h3>Instrument List</h3>
         <InstrumentList instruments={this.state.instruments} patterns={this.state.patterns} />
+        <Controls />
       </div>
     );
   }

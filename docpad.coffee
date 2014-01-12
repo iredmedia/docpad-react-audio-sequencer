@@ -22,7 +22,7 @@ docpadConfig = {
 
     # Ignore Paths
     # Can be set to an array of absolute paths that we should ignore from the scanning process
-    ignorePaths: false  # default
+    ignorePaths: ['src/documents/scripts/main.jsx']  # default
 
     # =================================
     # Server Configuration

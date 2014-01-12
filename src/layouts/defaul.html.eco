@@ -8,10 +8,12 @@
 </head>
 
 <body>
-    <!--%- @content %-->
+    <%- @content %>
+
     <div id="example"></div>
 
-    <script src="scripts/main.js"></script>
+    <%- @getBlock('scripts').toHTML() %>
 </body>
 
 </html>
+

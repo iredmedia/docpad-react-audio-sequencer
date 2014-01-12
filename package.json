@@ -17,6 +17,8 @@
     "docpad-plugin-grunt": "~2.1.1",
     "grunt": "~0.4.2",
     "grunt-react": "~0.6.0",
-    "docpad-plugin-livereload": "~2.5.6"
+    "docpad-plugin-livereload": "~2.5.6",
+    "docpad-plugin-eco": "~2.0.3",
+    "docpad-plugin-marked": "~2.2.0"
   }
 }

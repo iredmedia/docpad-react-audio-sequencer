@@ -1,0 +1,23 @@
+{
+	"tempo": 128,
+	"steps": 4,
+	"patterns" : [
+		[1, 0, 0, 0],
+		[1, 0, 1, 0]
+	],
+	"instruments": [
+		{
+			"name": "Kick",
+			"id": "RANDOM",
+			"pattern": 0
+		},{
+			"name": "Snare",
+			"id": "RANDOM",
+			"pattern": 1
+		},{
+			"name": "Clap",
+			"id": "RANDOM",
+			"pattern": 1
+		}
+	]
+}

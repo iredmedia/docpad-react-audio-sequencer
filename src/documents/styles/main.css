@@ -1,0 +1,41 @@
+/* Sequencer */
+h4 {
+	float: left;
+}
+
+li {
+	list-style-type: none;
+	clear: both;
+}
+
+.step {
+	float: left;
+	clear: none;
+	background: red;
+	padding: 15px 20px;
+	margin: 5px;
+}
+
+.indicator.active {
+	background: #00F;
+}
+
+.indicator {
+	border: 1px solid red;
+	margin: 5px;
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+}
+
+/* Stepper */
+.current0 .indicator0,
+.current1 .indicator1,
+.current2 .indicator2,
+.current3 .indicator3,
+.current4 .indicator4,
+.current5 .indicator5,
+.current6 .indicator6,
+.current7 .indicator7 {
+	background: black;
+}
